@@ -1,0 +1,36 @@
+<h2 class="text-3xl">{{ name }}</h2>
+
+<dl>
+  <td class="uppercase">Nombre:</td>
+  <dd class="ml-2 font-semibold text-2xl">{{ name }}</dd>
+
+  <td class="uppercase">Edad:</td>
+  <dd class="ml-2 font-semibold text-2xl">{{ age }}</dd>
+
+  <td class="uppercase">Metodo:</td>
+  <dd class="ml-2 font-semibold text-2xl">{{ getHeroDescription() }}</dd>
+
+  <td class="uppercase">Capitalizado:</td>
+  <dd class="ml-2 font-semibold text-2xl">{{ capitalizeName }}</dd>
+</dl>
+
+<br />
+
+<button
+  *ngIf="name !== 'Spiderman'"
+  class="p-2 bg-green-600 rounded-md text-white mr-2"
+  (click)="changeName()"
+>
+  Cambiar nombre
+</button>
+<button
+  *ngIf="age !== '24'"
+  class="p-2 bg-green-600 rounded-md text-white mr-2"
+  (click)="changeAge()"
+>
+  Cambiar edad
+</button>
+
+<button class="p-2 bg-green-600 rounded-md text-white mr-2" (click)="reset()">
+  Reset
+</button>
