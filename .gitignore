@@ -5,3 +5,4 @@ node_modules
 projects/**/.DS_Store
 projects/**/dist
 .vscode/
+progreso.txt
