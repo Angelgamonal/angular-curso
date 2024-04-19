@@ -1,0 +1,26 @@
+<h2 class="font-semibold text-xl text-center">Agregar Personaje</h2>
+<form
+  class="flex gap-2 flex-wrap flex-col p-2 max-w-[400px] m-auto"
+  (ngSubmit)="savedFormdata()"
+>
+  <input
+    type="text"
+    placeholder="Nombre"
+    class="border rounded-md border-gray-500 px-2 py-1"
+    name="name"
+    [(ngModel)]="formData.name"
+  />
+  <input
+    type="number"
+    placeholder="Poder"
+    class="border rounded-md border-gray-500 px-2 py-1"
+    name="power"
+    [(ngModel)]="formData.power"
+  />
+
+  <button class="p-2 bg-blue-600 text-white rounded-md" type="submit">
+    Agregar
+  </button>
+
+  <!-- <pre>{{ formData | json }}</pre> -->
+</form>
