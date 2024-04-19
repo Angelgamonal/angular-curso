@@ -5,7 +5,7 @@ const INITIAL_COUNTER = 10;
 @Component({
   selector: 'app-counter',
   template: `
-    <h3>Counter {{ counter }}</h3>
+    <h3 class="text-2xl mb-2">Counter {{ counter }}</h3>
     <button
       class="px-1 border border-black ml-[-1px]
     "
@@ -22,6 +22,8 @@ const INITIAL_COUNTER = 10;
     >
       -1
     </button>
+
+    <hr class="mt-2" />
   `,
 })
 export class CounterComponent {
