@@ -1,3 +1,8 @@
-<ul class="list-inside list-disc">
-  <li>hola</li>
+<ul class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2">
+  <li *ngFor="let item of gifs">
+    <gif-card-item
+      [imgUrl]="item.images.downsized_medium.url"
+      [title]="item.title"
+    ></gif-card-item>
+  </li>
 </ul>

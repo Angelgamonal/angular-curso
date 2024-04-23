@@ -11,4 +11,8 @@ export class SidebarComponent {
   get searchList() {
     return this.gifsService.tagsHistory;
   }
+
+  onSearchTag(tag: string) {
+    this.gifsService.shearhTag(tag);
+  }
 }
