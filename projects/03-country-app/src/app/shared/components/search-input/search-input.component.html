@@ -1,0 +1,7 @@
+<input
+  type="text"
+  [placeholder]="placeholder"
+  class="border rounded-md border-gray-500 px-2 py-1"
+  #input
+  (keyup.enter)="onValueInput(input.value)"
+/>

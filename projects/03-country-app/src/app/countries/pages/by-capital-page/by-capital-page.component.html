@@ -1,0 +1,14 @@
+<h2>Por capital</h2>
+
+<section class="flex gap-4 flex-col p-2">
+  <div class="w-full">
+    <shared-search-input
+      placeholder="por capital"
+      (inputValue)="searchByCapital($event)"
+    ></shared-search-input>
+  </div>
+  <div>
+    <hr />
+    <countries-table [countries]="countries"></countries-table>
+  </div>
+</section>
