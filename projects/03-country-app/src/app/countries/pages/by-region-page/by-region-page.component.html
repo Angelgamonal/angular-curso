@@ -1,1 +1,14 @@
-<p>by-region-page works!</p>
+<h2 class="text-center text-3xl font-semibold">Por Región</h2>
+<section class="flex gap-4 flex-col p-2">
+  <div class="w-full">
+    <shared-search-input
+      placeholder="Buscar por país"
+      (inputValue)="onSearchRegion($event)"
+    ></shared-search-input>
+  </div>
+
+  <div>
+    <hr />
+    <countries-table [countries]="regions"></countries-table>
+  </div>
+</section>
