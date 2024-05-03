@@ -41,7 +41,11 @@
           <th class="px-6 py-4">{{ country.name.common }}</th>
           <th class="px-6 py-4">{{ country.population | number }}</th>
           <th class="px-6 py-4">
-            <a href="#" class="text-blue-700">Ver mas</a>
+            <a
+              [routerLink]="['/countries/by', country.cca3]"
+              class="text-blue-700"
+              >Info</a
+            >
           </th>
         </tr>
       </tbody>
