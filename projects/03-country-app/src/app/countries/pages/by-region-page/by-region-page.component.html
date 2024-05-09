@@ -1,12 +1,20 @@
 <h2 class="text-center text-3xl font-semibold p-1">Por Región</h2>
 <hr class="my-2" />
 <section class="flex gap-4 flex-col p-2">
-  <div class="w-full">
-    <shared-search-input
-      placeholder="Buscar por país"
-      (inputValue)="onSearchRegion($event)"
-    ></shared-search-input>
+  <div class="w-full flex gap-2 justify-center">
+    <button
+      *ngFor="let item of regionList"
+      class="px-4 py-2 border my-2 rounded-md border-gray-800 transition"
+      [ngClass]="{
+        'bg-cyan-50 border-cyan-500 text-cyan-500': item === selectedRegion,
+      }"
+      (click)="onSearchRegion(item)"
+    >
+      {{ item }}
+    </button>
   </div>
+
+  <shared-loader *ngIf="isLoading"></shared-loader>
 
   <div>
     <hr />
