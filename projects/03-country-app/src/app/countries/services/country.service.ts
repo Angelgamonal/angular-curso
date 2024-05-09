@@ -10,14 +10,21 @@ export class CountryService {
 
   constructor(private http: HttpClient, private _toastService: ToastService) {}
 
-  searchCapital(term: string): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.apiUrl}/capital/${term}`).pipe(
-      catchError((error) => {
+  private getCountriesRequets(
+    url: string,
+    params?: HttpParams
+  ): Observable<Country[]> {
+    return this.http.get<Country[]>(url, { params }).pipe(
+      catchError(() => {
         this._toastService.error('No se encontraron resultados');
-
         return of([]);
       })
     );
+  }
+
+  searchCapital(term: string): Observable<Country[]> {
+    const url = `${this.apiUrl}/capital/${term}`;
+    return this.getCountriesRequets(url);
   }
 
   searchCountry(country: string): Observable<Country[]> {
@@ -25,23 +32,13 @@ export class CountryService {
 
     const params = new HttpParams().set('fullText', true);
 
-    return this.http.get<Country[]>(url, { params }).pipe(
-      catchError((error) => {
-        this._toastService.error('No se encontraron resultados');
-        return of([]);
-      })
-    );
+    return this.getCountriesRequets(url, params);
   }
 
   searchRegion(region: string): Observable<Country[]> {
     const url = `${this.apiUrl}/region/${region}`;
 
-    return this.http.get<Country[]>(url).pipe(
-      catchError((error) => {
-        this._toastService.error('No se encontraron resultados');
-        return of([]);
-      })
-    );
+    return this.getCountriesRequets(url);
   }
 
   searchCountryByAlphaCode(code: string): Observable<Country | null> {
