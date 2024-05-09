@@ -14,4 +14,12 @@ export class SearchInputComponent {
   onValueInput(value: string) {
     this.inputValue.emit(value);
   }
+
+  onSubmit(event: Event, value: string) {
+    event.preventDefault();
+
+    if (value.trim().length === 0) return;
+
+    this.onValueInput(value);
+  }
 }

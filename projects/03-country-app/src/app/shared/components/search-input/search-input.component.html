@@ -1,7 +1,12 @@
-<input
-  type="text"
-  [placeholder]="placeholder"
-  class="border rounded-md border-gray-500 px-4 py-1 w-full mt-2"
-  #input
-  (keyup.enter)="onValueInput(input.value)"
-/>
+<form class="flex gap-4 items-center" (submit)="onSubmit($event, input.value)">
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    class="border rounded-md border-gray-500 px-4 py-1 w-full mt-2"
+    #input
+  />
+
+  <button class="px-4 py-2 bg-blue-600 text-white rounded-md" type="submit">
+    Buscar
+  </button>
+</form>
