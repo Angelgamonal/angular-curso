@@ -11,6 +11,9 @@ export class SearchInputComponent {
   @Input()
   placeholder: string = '';
 
+  @Input()
+  initialValue = '';
+
   onValueInput(value: string) {
     this.inputValue.emit(value);
   }
