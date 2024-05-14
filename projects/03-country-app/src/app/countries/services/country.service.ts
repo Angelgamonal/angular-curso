@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Country } from '../interfaces/country';
 import { ToastService } from 'angular-toastify';
+import { CacheStore } from '../interfaces/cache-store.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CountryService {
   private apiUrl = 'https://restcountries.com/v3.1';
+
+  public cacheStore: CacheStore = {
+    byCapital: { term: '', countries: [] },
+    byRegion: { countries: [] },
+    byCountries: { term: '', countries: [] },
+  };
 
   constructor(private http: HttpClient, private _toastService: ToastService) {}
 
@@ -24,7 +31,9 @@ export class CountryService {
 
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.apiUrl}/capital/${term}`;
-    return this.getCountriesRequets(url);
+    return this.getCountriesRequets(url).pipe(
+      tap((countries) => (this.cacheStore.byCapital = { countries, term }))
+    );
   }
 
   searchCountry(country: string): Observable<Country[]> {
