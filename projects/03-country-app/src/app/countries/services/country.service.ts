@@ -16,7 +16,19 @@ export class CountryService {
     byCountries: { term: '', countries: [] },
   };
 
-  constructor(private http: HttpClient, private _toastService: ToastService) {}
+  constructor(private http: HttpClient, private _toastService: ToastService) {
+    this.loadFromLocalStorage();
+  }
+
+  private saveToLocalStorage() {
+    localStorage.setItem('cacheStorage', JSON.stringify(this.cacheStore));
+  }
+
+  private loadFromLocalStorage() {
+    if (!localStorage.getItem('cacheStorage')) return;
+
+    this.cacheStore = JSON.parse(localStorage.getItem('cacheStorage')!);
+  }
 
   private getCountriesRequets(
     url: string,
@@ -33,7 +45,8 @@ export class CountryService {
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.apiUrl}/capital/${term}`;
     return this.getCountriesRequets(url).pipe(
-      tap((countries) => (this.cacheStore.byCapital = { countries, term }))
+      tap((countries) => (this.cacheStore.byCapital = { countries, term })),
+      tap(() => this.saveToLocalStorage())
     );
   }
 
@@ -46,7 +59,8 @@ export class CountryService {
       tap(
         (countries) =>
           (this.cacheStore.byCountries = { countries, term: country })
-      )
+      ),
+      tap(() => this.saveToLocalStorage())
     );
   }
 
@@ -54,7 +68,8 @@ export class CountryService {
     const url = `${this.apiUrl}/region/${region}`;
 
     return this.getCountriesRequets(url).pipe(
-      tap((countries) => (this.cacheStore.byRegion = { countries, region }))
+      tap((countries) => (this.cacheStore.byRegion = { countries, region })),
+      tap(() => this.saveToLocalStorage())
     );
   }
 
