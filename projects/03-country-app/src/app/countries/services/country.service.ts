@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Country } from '../interfaces/country';
 import { ToastService } from 'angular-toastify';
 import { CacheStore } from '../interfaces/cache-store.interface';
+import { Region } from '../interfaces/region.type';
 
 @Injectable({ providedIn: 'root' })
 export class CountryService {
@@ -41,7 +42,12 @@ export class CountryService {
 
     const params = new HttpParams().set('fullText', true);
 
-    return this.getCountriesRequets(url, params);
+    return this.getCountriesRequets(url, params).pipe(
+      tap(
+        (countries) =>
+          (this.cacheStore.byCountries = { countries, term: country })
+      )
+    );
   }
 
   searchRegion(region: string): Observable<Country[]> {
