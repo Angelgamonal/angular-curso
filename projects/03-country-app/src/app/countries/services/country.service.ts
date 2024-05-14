@@ -50,10 +50,12 @@ export class CountryService {
     );
   }
 
-  searchRegion(region: string): Observable<Country[]> {
+  searchRegion(region: Region): Observable<Country[]> {
     const url = `${this.apiUrl}/region/${region}`;
 
-    return this.getCountriesRequets(url);
+    return this.getCountriesRequets(url).pipe(
+      tap((countries) => (this.cacheStore.byRegion = { countries, region }))
+    );
   }
 
   searchCountryByAlphaCode(code: string): Observable<Country | null> {
