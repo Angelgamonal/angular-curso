@@ -5,12 +5,14 @@ import { NumbersPageComponent } from './pages/numbers-page/numbers-page.componen
 import { UnCommonPageComponent } from './pages/un-common-page/un-common-page.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import OrderComponent from './pages/order/order.component';
 
 @NgModule({
   declarations: [
     BasicsPageComponent,
     NumbersPageComponent,
     UnCommonPageComponent,
+    OrderComponent,
   ],
   imports: [CommonModule, ProductsRoutingModule, PrimeNgModule],
 })
