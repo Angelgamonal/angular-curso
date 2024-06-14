@@ -15,3 +15,4 @@
 | `01`   | Intro-Angular | [Ver](projects/01-intro/)       | ... |
 | `02`   | Gifs-app      | [Ver](projects/02-gifs-app/)    | ... |
 | `03`   | Country-app   | [Ver](projects/03-country-app/) | ... |
+| `04`   | Pipe-app      | [Ver](projects/04-pipesApp/)    | ... |
