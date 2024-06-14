@@ -9,6 +9,7 @@ import OrderComponent from './pages/order/order.component';
 import { ToggleCasePipe } from './pipes/toggle-case.pipe';
 import { CanFlyPipe } from './pipes/can-fly.pipe';
 import { SortByPipe } from './pipes/sortBy.pipe';
+import { BoxColorPipe } from './pipes/box-color.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SortByPipe } from './pipes/sortBy.pipe';
     ToggleCasePipe,
     CanFlyPipe,
     SortByPipe,
+    BoxColorPipe,
   ],
   imports: [CommonModule, ProductsRoutingModule, PrimeNgModule],
 })
