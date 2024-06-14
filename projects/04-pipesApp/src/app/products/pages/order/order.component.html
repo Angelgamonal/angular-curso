@@ -55,7 +55,13 @@
           <tr>
             <td>{{ hero.name }}</td>
             <td>{{ hero.canFly | canFly | titlecase }}</td>
-            <td>{{ hero.color }}</td>
+            <td class="flex align-items-center">
+              <div
+                class="mr-1 w-1rem h-1rem"
+                [style]="hero.color | boxColor"
+              ></div>
+              <span>{{ hero.color | toggleCase : true }}</span>
+            </td>
           </tr>
         </ng-template>
       </p-table>
