@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { ListPageComponent } from './page/list-page/list-page.component';
 import { NewPageComponent } from './page/new-page/new-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SearchPageComponent } from './page/search-page/search-page.component';
     ListPageComponent,
     NewPageComponent,
     SearchPageComponent,
+    CardComponent,
   ],
   imports: [CommonModule, HeroesRoutingModule, MaterialModule],
 })
