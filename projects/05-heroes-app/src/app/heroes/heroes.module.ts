@@ -10,6 +10,7 @@ import { ListPageComponent } from './page/list-page/list-page.component';
 import { NewPageComponent } from './page/new-page/new-page.component';
 import { SearchPageComponent } from './page/search-page/search-page.component';
 import { CardComponent } from './components/card/card.component';
+import { HeroImagePipe } from './pipe/hero-image.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { CardComponent } from './components/card/card.component';
     NewPageComponent,
     SearchPageComponent,
     CardComponent,
+
+    // Pipes
+    HeroImagePipe,
   ],
   imports: [CommonModule, HeroesRoutingModule, MaterialModule],
 })

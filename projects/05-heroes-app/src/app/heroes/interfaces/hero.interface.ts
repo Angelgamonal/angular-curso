@@ -5,6 +5,7 @@ export type Hero = {
   alter_ego:        string;
   first_appearance: string;
   characters:       string;
+  alt_img?:         string;
 }
 
 export enum Publisher {
