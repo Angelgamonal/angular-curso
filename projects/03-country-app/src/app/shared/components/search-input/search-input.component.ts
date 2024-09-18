@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   templateUrl: './search-input.component.html',
   selector: 'shared-search-input',
 })
-export class SearchInputComponent {
-  @Output()
-  inputValue: EventEmitter<string> = new EventEmitter();
+export class SearchInputComponent implements OnInit {
+  private debouncer: Subject<string> = new Subject<string>();
 
   @Input()
   placeholder: string = '';
@@ -14,7 +14,19 @@ export class SearchInputComponent {
   @Input()
   initialValue = '';
 
-  onValueInput(value: string) {
+  @Output()
+  inputValue: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  onDebounce: EventEmitter<string> = new EventEmitter();
+
+  ngOnInit(): void {
+    this.debouncer
+      .pipe(debounceTime(300))
+      .subscribe((value) => this.onDebounce.emit(value));
+  }
+
+  emitInputValue(value: string) {
     this.inputValue.emit(value);
   }
 
@@ -23,6 +35,10 @@ export class SearchInputComponent {
 
     if (value.trim().length === 0) return;
 
-    this.onValueInput(value);
+    this.emitInputValue(value);
+  }
+
+  onKeyPress(searchTerm: string) {
+    this.debouncer.next(searchTerm);
   }
 }

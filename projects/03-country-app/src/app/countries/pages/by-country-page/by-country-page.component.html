@@ -2,10 +2,11 @@
 <hr class="my-2" />
 <section class="flex gap-4 flex-col p-2">
   <div class="w-full">
+    <!-- (onDebounce)="onSearchCountry($event)" -->
     <shared-search-input
       placeholder="Buscar por país"
-      (inputValue)="onSearchCountry($event)"
       [initialValue]="initialValue"
+      (inputValue)="onSearchCountry($event)"
     ></shared-search-input>
   </div>
 
