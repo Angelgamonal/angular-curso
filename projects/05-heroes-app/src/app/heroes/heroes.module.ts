@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HeroPageComponent } from './page/hero-page/hero-page.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -24,6 +25,11 @@ import { HeroImagePipe } from './pipe/hero-image.pipe';
     // Pipes
     HeroImagePipe,
   ],
-  imports: [CommonModule, HeroesRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    HeroesRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HeroesModule {}
