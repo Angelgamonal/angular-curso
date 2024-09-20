@@ -13,7 +13,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Bruce Wayne",
       "first_appearance": "Detective Comics #27",
-      "characters": "Bruce Wayne"
+      "characters": "Bruce Wayne",
+      "alt_img": null
     },
     {
       "id": "dc-superman",
@@ -166,6 +167,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "MvvJGvu",
+      "superhero": "Fernando",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Fernando",
+      "first_appearance": "Comic Udemy 2015",
+      "characters": "Fernando",
+      "alt_img": "https://img-c.udemycdn.com/user/200_H/11767934_4361_2.jpg"
     }
   ]
 }
