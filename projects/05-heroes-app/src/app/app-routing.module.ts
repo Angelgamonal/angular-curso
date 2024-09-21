@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './shared/page/not-found-page/not-found-page.component';
+import { canActivateGuard, canMatchGuard } from './auth/guards/auth.guard';
+import {
+  canMatchGuardPublic,
+  cantActiveGuarPublic,
+} from './auth/guards/public.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [cantActiveGuarPublic],
+    canMatch: [canMatchGuardPublic],
   },
   {
     path: 'heroes',
     loadChildren: () =>
       import('./heroes/heroes.module').then((m) => m.HeroesModule),
+
+    canActivate: [canActivateGuard],
+    canMatch: [canMatchGuard],
   },
   {
     path: '404',
