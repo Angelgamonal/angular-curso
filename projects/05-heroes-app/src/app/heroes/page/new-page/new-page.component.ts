@@ -3,8 +3,10 @@ import { HeroesService } from '../../services/heroes.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentDeleteComponent } from '../../components/dialog-content-delete/dialog-content-delete.component';
 
 @Component({
   selector: 'app-new-page',
@@ -31,7 +33,8 @@ export class NewPageComponent implements OnInit {
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -75,5 +78,47 @@ export class NewPageComponent implements OnInit {
     this.snackbar.open(message, 'cerrar', {
       duration: 2500,
     });
+  }
+
+  openDialog() {
+    if (!this.currentHero.id) throw Error('hero id is required');
+
+    const dialogRef = this.dialog.open(DialogContentDeleteComponent, {
+      data: this.currentHero,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((result: boolean) => result),
+        switchMap(() => {
+          return this.heroesService.deleteHeroById(this.currentHero.id);
+        })
+      )
+      .subscribe((result) => {
+        if (!result) {
+          this.showSnackBar('this does not deleted');
+          return;
+        }
+
+        this.router.navigateByUrl('/heroes/list');
+        this.showSnackBar('Deleted success');
+      });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (!result) return;
+
+    //   this.heroesService
+    //     .deleteHeroById(this.currentHero.id)
+    //     .subscribe((result) => {
+    //       if (!result) {
+    //         this.showSnackBar('this does not deleted ');
+    //         return;
+    //       }
+
+    //       this.router.navigateByUrl('/heroes/list');
+    //       this.showSnackBar('Deleted success');
+    //     });
+    // });
   }
 }
